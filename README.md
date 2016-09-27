@@ -11,3 +11,5 @@ atom package to encrypt/decrypt selected text using xor key
 ![preview image](https://raw.githubusercontent.com/ferflores/selectxor/master/doc/preview.gif)
 
 The default key is 'selectxor' but you can change it in the package settings.
+
+(xor result is base64 encoded to avoid multiple lines)
