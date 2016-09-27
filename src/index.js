@@ -11,8 +11,8 @@ const selectxor = {
     }
   },
   activate: function() {
-      var editor = atom.workspace.getActiveTextEditor();
       atom.commands.add('atom-text-editor','selectxor:encrypt', () => {
+        var editor = atom.workspace.getActiveTextEditor();
         var selectedText = editor.getSelectedText();
         if(selectedText && selectedText.length > 0){
           var cryptedText = xor.encrypt(atom.config.get('selectxor.xorKey'), selectedText);
@@ -21,6 +21,7 @@ const selectxor = {
       });
 
       atom.commands.add('atom-text-editor','selectxor:decrypt', () => {
+        var editor = atom.workspace.getActiveTextEditor();
         var selectedText = editor.getSelectedText();
         if(selectedText && selectedText.length > 0){
           var decryptedText = xor.decrypt(atom.config.get('selectxor.xorKey'), selectedText);
