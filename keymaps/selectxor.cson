@@ -1,0 +1,3 @@
+'atom-text-editor':
+  'alt-z': 'selectxor:encrypt'
+  'alt-x': 'selectxor:decrypt'
