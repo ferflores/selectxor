@@ -1,5 +1,7 @@
 'use babel'
 
+import xor from './xor';
+
 const selectxor = {
   config:{
     xorKey:{
@@ -9,12 +11,21 @@ const selectxor = {
     }
   },
   activate: function() {
+      var editor = atom.workspace.getActiveTextEditor();
       atom.commands.add('atom-text-editor','selectxor:encrypt', () => {
-        console.log('encrypt');
+        var selectedText = editor.getSelectedText();
+        if(selectedText && selectedText.length > 0){
+          var cryptedText = xor.encrypt(atom.config.get('selectxor.xorKey'), selectedText);
+          editor.insertText(cryptedText);
+        }
       });
 
       atom.commands.add('atom-text-editor','selectxor:decrypt', () => {
-        console.log('decrypt');
+        var selectedText = editor.getSelectedText();
+        if(selectedText && selectedText.length > 0){
+          var decryptedText = xor.decrypt(atom.config.get('selectxor.xorKey'), selectedText);
+          editor.insertText(decryptedText);
+        }
       });
 
     }
