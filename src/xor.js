@@ -8,8 +8,8 @@ export default {
       return btoa(xor(key, text));
     },
     decrypt: (key, text) => {
-       if (!key || !text) {
-         throw 'key and text are required';
+       if (!key || !text || !isBase64(text)) {
+         return text;
        }
 
        text = atob(text);
@@ -26,4 +26,12 @@ function xor(key, text){
   }
 
   return cipher.join('');
+}
+
+function isBase64(str) {
+  try {
+      return btoa(atob(str)) == str;
+    } catch (err) {
+      return false;
+    }
 }
